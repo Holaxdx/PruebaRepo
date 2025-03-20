@@ -37,22 +37,24 @@ for pregunta, respuestas, respuestaCorrecta  in questions_to_ask:
     # Se muestra la pregunta y las respuestas posibles
     
     print(pregunta)
-    for i,p in respuestas:
+
+    for i, p in enumerate(respuestas):
         print(f"{i+1}. {p}")
+
 
     # El usuario tiene 2 intentos para responder correctamente
     for intento in range(2):
         user_answer = input("Respuesta: ")
         
         # Verifico que la respuesta ingresada es valida en los rangos aceptables
-        if (user_answer.isnumeric()) and ((int(user_answer)>0) and (int(user_answer) < 5)):    
+        if user_answer.isnumeric() and 0 < int(user_answer) < 5:  
             # Se verifica si la respuesta es correcta
-            if (int(user_answer) - 1) == respuestaCorrecta:
+            if int(user_answer) - 1 == respuestaCorrecta:
                 print("¡Correcto!")
                 score += 1
                 break
             else:
-                score-=0.5
+                score -= 0.5
         else:
             print("Respuesta no válida")
             sys.exit(1)
