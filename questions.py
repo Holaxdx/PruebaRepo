@@ -27,18 +27,18 @@ correct_answers_index = [1, 2, 0, 3, 1]
 
 score = 0
 
-questions_to_ask = random.choices(list(zip(questions,answers, correct_answers_index)), k=3)
+questions_to_ask = random.sample(list(zip(questions,answers, correct_answers_index)), k=3)
 # El usuario deberá contestar 3 preguntas
 
-for quest in questions_to_ask:
+for pregunta, respuestas, respuestaCorrecta  in questions_to_ask:
     # Se selecciona una pregunta aleatoria
     #question_index = random.randint(0, len(questions) - 1)
 
     # Se muestra la pregunta y las respuestas posibles
     
-    print(quest[0])
-    for i in range(4):
-        print(f"{i+1}. {quest[1][i]}")
+    print(pregunta)
+    for i,p in respuestas:
+        print(f"{i+1}. {p}")
 
     # El usuario tiene 2 intentos para responder correctamente
     for intento in range(2):
@@ -47,7 +47,7 @@ for quest in questions_to_ask:
         # Verifico que la respuesta ingresada es valida en los rangos aceptables
         if (user_answer.isnumeric()) and ((int(user_answer)>0) and (int(user_answer) < 5)):    
             # Se verifica si la respuesta es correcta
-            if (int(user_answer) - 1) == quest[2]:
+            if (int(user_answer) - 1) == respuestaCorrecta:
                 print("¡Correcto!")
                 score += 1
                 break
@@ -60,7 +60,7 @@ for quest in questions_to_ask:
         # Si el usuario no responde correctamente después de 2 intentos,
         # se muestra la respuesta correcta
         print("Incorrecto. La respuesta correcta es:")
-        print(quest[1][quest[2]])
+        print(respuestas[respuestaCorrecta])
 
     # no sabia que el for podia tener un else, tremendo
     
